@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/application.properties
+
+
+logs/
+*.log
+*.tmp
+hs_err_pid*
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
