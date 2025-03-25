@@ -4,9 +4,9 @@ import com.example.movies.MovieData.entity.Movie;
 
 import java.util.List;
 
-public interface MoviesDAO {
+public interface MovieDAO {
 
-    List<Movie> findByAll();
+    List<Movie> findAll();
 
     Movie findById(int theId);
 

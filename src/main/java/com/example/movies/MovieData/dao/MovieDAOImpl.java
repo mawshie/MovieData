@@ -9,18 +9,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class MoviesDAOImpl implements MoviesDAO{
+public class MovieDAOImpl implements MovieDAO {
 
     // inject entity manager
     private EntityManager entityManager;
 
     @Autowired
-    public MoviesDAOImpl(EntityManager entityManager){
+    public MovieDAOImpl(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 
     @Override
-    public List<Movie> findByAll() {
+    public List<Movie> findAll() {
         TypedQuery<Movie> theQuery = entityManager.createQuery("from Movie", Movie.class);
 
         List<Movie> movies = theQuery.getResultList();
