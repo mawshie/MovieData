@@ -45,6 +45,13 @@ public class MovieDAOImpl implements MovieDAO {
     public void deleteById(int theId) {
         Movie theMovie = entityManager.find(Movie.class, theId);
         entityManager.remove(theMovie);
+    }
 
+    @Override
+    public List<Movie> findAllMoviesWithGenres(){
+        TypedQuery<Movie> theQuery = entityManager.createQuery("select m from  Movie m join fetch m.genres order by m.name", Movie.class); // m provides a reference to the movie entity object
+
+        List<Movie> movies = theQuery.getResultList();
+        return movies;
     }
 }

@@ -12,4 +12,6 @@ public interface MovieService {
     Movie save (Movie theMovie);
 
     void deleteById(int theID);
+
+    List<Movie> findAllMoviesWithGenres();
 }

@@ -1,6 +1,9 @@
 package com.example.movies.MovieData.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name="movies")
@@ -20,6 +23,16 @@ public class Movie {
 
     @Column(name = "release_date")
     private int releaseDate;
+
+    // Many-to-Many relationship with Genre
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "movie_genre", // the junction table name
+            joinColumns = @JoinColumn(name = "FKmovie_id"), // Movie's foreign key in movie_genre
+            inverseJoinColumns = @JoinColumn(name = "FKgenre_id") // Genre's foreign key in movie_genre
+    )
+    @JsonManagedReference
+    private Set<Genre> genres;
 
     //define constructors
     public Movie(){}

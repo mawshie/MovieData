@@ -28,6 +28,11 @@ public class MovieServiceImpl implements MovieService{
         return movieDAO.findById(theId);
     }
 
+    @Override
+    public List<Movie> findAllMoviesWithGenres(){
+        return movieDAO.findAllMoviesWithGenres();
+    }
+
     @Transactional
     @Override
     public Movie save(Movie theMovie) {

@@ -18,11 +18,13 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
+    // get all movies
     @GetMapping("/movies")
     public List<Movie> findAll(){
         return movieService.findAll();
     }
 
+    // get a specific movie
     @GetMapping("/movies/{movieId}")
     public Movie getMovie(@PathVariable int movieId){
         Movie theMovie = movieService.findById(movieId);
@@ -32,6 +34,7 @@ public class MovieRestController {
         return theMovie;
     }
 
+    // add new movie
     @PostMapping("/movies")
     public Movie addMovie(@RequestBody Movie theMovie){
         theMovie.setMovId(0); // if someone accidentally passes in an ID it will overwrite it to 0 to force a save.
@@ -39,12 +42,14 @@ public class MovieRestController {
         return dbMovie;
     }
 
+    // update a specific movie
     @PutMapping("/movies")
     public Movie updateMovie(@RequestBody Movie theMovei){
         Movie dbMovie = movieService.save(theMovei);
         return dbMovie;
     }
 
+    // delete a movie
     @DeleteMapping("/movies/{movieId}")
     public String deleteMovie(@PathVariable int movieId){
         Movie tempMovie = movieService.findById(movieId);
@@ -53,7 +58,12 @@ public class MovieRestController {
             throw new RuntimeException("Movie id not found - " + movieId);
         }
         movieService.deleteById(movieId);
-        return "Deleted movie id - " +movieId;
+        return "Deleted movie id - " + movieId;
+    }
+
+    @GetMapping("/with-genres")
+    public List<Movie> findAllMoviesWithGenres(){
+        return movieService.findAllMoviesWithGenres();
     }
 
 }
